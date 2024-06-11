@@ -27,7 +27,7 @@ struct ContentView: View {
     
     let horizontalPadding: CGFloat = 16 // No swiftUI API to get padding value at time of lesson
     let spacing: CGFloat = 0 // between buttons
-    let buttonWidth: CGFloat = 130
+    let buttonWidth: CGFloat = 102
     
     
     
