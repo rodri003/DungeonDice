@@ -42,16 +42,16 @@ struct ContentView: View {
             
             Spacer()
             
-            Group {
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 100, maximum: 102))], content: {
                 ForEach(Dice.allCases, id:\.self) {dice in
                     Button("\(dice.rawValue)-sided") {
                         resultMessage = "You rolled a \(dice.roll()) on a \(dice)-sided dice."
                     }
                 }
-                
-            }
-            .buttonStyle(.borderedProminent)
-            .tint(.red)
+                .buttonStyle(.borderedProminent)
+                .tint(.red)
+            })
+     
             
         }
         .padding()
