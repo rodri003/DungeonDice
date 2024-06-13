@@ -75,10 +75,10 @@ struct ContentView: View {
             }
             .padding()
             .onChange(of: geo.size.width, { _, _ in
-                arrangeGridItems(geo: geo)
+                arrangeGridItems(deviceWidth: geo.size.width)
             })
             .onAppear(perform: {
-                arrangeGridItems(geo: geo)
+                arrangeGridItems(deviceWidth: geo.size.width)
             })
             
             
@@ -88,8 +88,8 @@ struct ContentView: View {
         
     }
     
-    func arrangeGridItems(geo: GeometryProxy) {
-        var screenWidth = geo.size.width - horizontalPadding*2  // padding on both sides
+    func arrangeGridItems(deviceWidth: CGFloat) {
+        var screenWidth = deviceWidth - horizontalPadding*2  // padding on both sides
         if Dice.allCases.count > 1 {
             screenWidth += spacing
             // Calculate numOfButtonsPerRow as an Int
