@@ -34,18 +34,11 @@ struct ContentView: View {
     var body: some View {
         GeometryReader(content: { geo in
             VStack {
-                Text("Dungeon Dice")
-                    .font(.largeTitle)
-                    .fontWeight(.black)
-                    .foregroundColor(.red)
+               titleView
                 
                 Spacer()
                 
-                Text(resultMessage)
-                    .font(.largeTitle)
-                    .fontWeight(.medium)
-                    .multilineTextAlignment(.center)
-                    .frame(height: 150)
+               resultMessageView
                 
                 Spacer()
                 
@@ -99,7 +92,26 @@ struct ContentView: View {
     }
 }
 
+extension ContentView {
+    private var titleView: some View {
+        Text("Dungeon Dice")
+            .font(.largeTitle)
+            .fontWeight(.black)
+            .foregroundColor(.red)
+        
+        }
+    
+     private var resultMessageView: some View {
+        Text(resultMessage)
+            .font(.largeTitle)
+            .fontWeight(.medium)
+            .multilineTextAlignment(.center)
+            .frame(height: 150)
+    }
+}
+
 #Preview {
     ContentView()
 }
+
 
