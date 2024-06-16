@@ -34,36 +34,15 @@ struct ContentView: View {
     var body: some View {
         GeometryReader(content: { geo in
             VStack {
-               titleView
+                titleView
                 
                 Spacer()
                 
-               resultMessageView
+                resultMessageView
                 
                 Spacer()
                 
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: buttonWidth), spacing: spacing)], content: {
-                    ForEach(Dice.allCases.dropLast(buttonsLeftOver), id:\.self) {dice in
-                        Button("\(dice.rawValue)-sided") {
-                            resultMessage = "You rolled a \(dice.roll()) on a \(dice)-sided dice."
-                        }
-                        .frame(width: buttonWidth)
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .tint(.red)
-                })
-                
-                HStack {
-                    ForEach(Dice.allCases.suffix(buttonsLeftOver), id:\.self) {
-                        dice in
-                        Button("\(dice.rawValue)-sided") {
-                            resultMessage = "You rolled a \(dice.roll()) on a \(dice)-sided dice."
-                        }
-                        .frame(width: buttonWidth)
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .tint(.red)
-                }
+                buttonLayoutView
                 
             }
             .padding()
@@ -99,14 +78,42 @@ extension ContentView {
             .fontWeight(.black)
             .foregroundColor(.red)
         
-        }
+    }
     
-     private var resultMessageView: some View {
+    private var resultMessageView: some View {
         Text(resultMessage)
             .font(.largeTitle)
             .fontWeight(.medium)
             .multilineTextAlignment(.center)
             .frame(height: 150)
+    }
+    
+    private var buttonLayoutView: some View {
+        VStack {
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: buttonWidth), spacing: spacing)], content: {
+                ForEach(Dice.allCases.dropLast(buttonsLeftOver), id:\.self) {dice in
+                    Button("\(dice.rawValue)-sided") {
+                        resultMessage = "You rolled a \(dice.roll()) on a \(dice)-sided dice."
+                    }
+                    .frame(width: buttonWidth)
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(.red)
+            })
+            HStack {
+                ForEach(Dice.allCases.suffix(buttonsLeftOver), id:\.self) {
+                    dice in
+                    Button("\(dice.rawValue)-sided") {
+                        resultMessage = "You rolled a \(dice.roll()) on a \(dice)-sided dice."
+                    }
+                    .frame(width: buttonWidth)
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(.red)
+            }
+        }
+        
+
     }
 }
 
